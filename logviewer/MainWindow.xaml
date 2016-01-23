@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:logviewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="LogMaster" Height="600" Width="800" MinHeight="300">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*" MinHeight="100"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0"/>
+        <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="1" />
+        <ScrollViewer Grid.Row="2"/>
     </Grid>
 </Window>
