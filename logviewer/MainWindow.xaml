@@ -5,15 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:logviewer"
         mc:Ignorable="d"
-        Title="LogMaster" Height="600" Width="800" MinHeight="300">
-    <Grid Margin="0">
+        Title="LogMaster" Height="600" Width="800" MinHeight="300"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="*" MinHeight="100"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="*" MinHeight="100"/>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0"/>
-        <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="1" />
-        <ScrollViewer Grid.Row="2"/>
+        <DockPanel LastChildFill="False" Grid.Row="0">
+            <Menu x:Name="menu" VerticalAlignment="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New"/>
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Close"/>
+                    <Separator/>
+                    <MenuItem Header="_Exit"/>
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_Help"/>
+                    <Separator/>
+                    <MenuItem Header="_About"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <ScrollViewer Grid.Row="1"/>
+        <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="2" />
+        <ScrollViewer Grid.Row="3"/>
+        
     </Grid>
 </Window>
