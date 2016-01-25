@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:logviewer"
         mc:Ignorable="d"
-        Title="LogMaster" Height="600" Width="800" MinHeight="600"
+        Title="LogMaster" Height="600" Width="800" MinHeight="600" MinWidth="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" MinWidth="800">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" >
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -16,25 +16,37 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="*" MinHeight="100"/>
         </Grid.RowDefinitions>
-        <DockPanel LastChildFill="False" Grid.Row="0">
+        <DockPanel LastChildFill="False" Grid.Row="0" Background="#FFF3BDFF">
             <Menu x:Name="menu" VerticalAlignment="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New"/>
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="New"/>
+                    <MenuItem Header="Open"/>
+                    <MenuItem Header="Close"/>
                     <Separator/>
-                    <MenuItem Header="_Exit"/>
+                    <MenuItem Header="Exit"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
-                    <MenuItem Header="_Help"/>
+                    <MenuItem Header="Help"/>
                     <Separator/>
-                    <MenuItem Header="_About"/>
+                    <MenuItem Header="About"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ScrollViewer Grid.Row="1"/>
-        <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="2" />
-        <ScrollViewer Grid.Row="3"/>
-        
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ListView x:Name="listView" Background="#FFB5BFFF">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn Header="Index" Width="50" DisplayMemberBinding="{Binding Index}" />
+                        <GridViewColumn Header="Time" Width="120" DisplayMemberBinding="{Binding Time}" />
+                        <GridViewColumn Header="UserID" Width="120" DisplayMemberBinding="{Binding UserID}" />
+                        <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding Payload}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="2" IsTabStop="False" />
+        <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas Background="#FFBFFF89"/>
+        </ScrollViewer>
     </Grid>
 </Window>
