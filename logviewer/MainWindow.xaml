@@ -9,6 +9,9 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" >
+    <Window.Resources>
+        <local:ByteArrayConverter x:Key="formatter"/>
+    </Window.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -36,10 +39,10 @@
             <ListView x:Name="listView" Background="#FFB5BFFF">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
-                        <GridViewColumn Header="Index" Width="50" DisplayMemberBinding="{Binding Index}" />
+                        <GridViewColumn Header="Index" Width="50" DisplayMemberBinding="{Binding Idx}" />
                         <GridViewColumn Header="Time" Width="120" DisplayMemberBinding="{Binding Time}" />
-                        <GridViewColumn Header="UserID" Width="120" DisplayMemberBinding="{Binding UserID}" />
-                        <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding Payload}" />
+                        <GridViewColumn Header="UserID" Width="120" DisplayMemberBinding="{Binding UserId}" />
+                        <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding payload, Converter={StaticResource formatter}}" />
                     </GridView>
                 </ListView.View>
             </ListView>

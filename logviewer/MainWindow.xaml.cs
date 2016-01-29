@@ -23,6 +23,14 @@ namespace logviewer
         public MainWindow()
         {
             InitializeComponent();
+
+            List < TraceItem > Items = new List<TraceItem>();
+            Items.Add(new TraceItem() { Idx = 0, Time = DateTime.Now, UserId = 0x100, payLoad = new byte[]{ 0x1, 0x2, 0x3 } });
+            Items.Add(new TraceItem() { Idx = 1, Time = DateTime.Now, UserId = 0x101, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
+            Items.Add(new TraceItem() { Idx = 2, Time = DateTime.Now, UserId = 0x102, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
+            Items.Add(new TraceItem() { Idx = 3, Time = DateTime.Now, UserId = 0x103, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
+
+            listView.ItemsSource = Items;
         }
     }
 }
