@@ -8,7 +8,7 @@ namespace logviewer
 {
     class TraceItem
     {
-        public int Idx { get; set; }
+        public uint Idx { get; set; }
 
         public DateTime Time { get; set; }
 

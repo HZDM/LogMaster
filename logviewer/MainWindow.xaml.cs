@@ -25,12 +25,26 @@ namespace logviewer
             InitializeComponent();
 
             List < TraceItem > Items = new List<TraceItem>();
-            Items.Add(new TraceItem() { Idx = 0, Time = DateTime.Now, UserId = 0x100, payLoad = new byte[]{ 0x1, 0x2, 0x3 } });
-            Items.Add(new TraceItem() { Idx = 1, Time = DateTime.Now, UserId = 0x101, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
-            Items.Add(new TraceItem() { Idx = 2, Time = DateTime.Now, UserId = 0x102, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
-            Items.Add(new TraceItem() { Idx = 3, Time = DateTime.Now, UserId = 0x103, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
-
+            for (uint i = 0; i < 100; i++)
+            {
+                Items.Add(new TraceItem() { Idx = i, Time = DateTime.Now, UserId = 0x100+i, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
+            }
             listView.ItemsSource = Items;
+        }
+
+        private void scroll_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var ofd = new Microsoft.Win32.OpenFileDialog() { Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif" };
+            var result = ofd.ShowDialog();
+            if (result == false) return;
+
         }
     }
 }

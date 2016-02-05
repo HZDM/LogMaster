@@ -8,14 +8,14 @@
         Title="LogMaster" Height="600" Width="800" MinHeight="600" MinWidth="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" >
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" FontSize="16">
     <Window.Resources>
         <local:ByteArrayConverter x:Key="formatter"/>
     </Window.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
-            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="3*" MinHeight="100"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="*" MinHeight="100"/>
         </Grid.RowDefinitions>
@@ -23,7 +23,7 @@
             <Menu x:Name="menu" VerticalAlignment="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="New"/>
-                    <MenuItem Header="Open"/>
+                    <MenuItem Header="Open"  Click="MenuItem_Click"/>
                     <MenuItem Header="Close"/>
                     <Separator/>
                     <MenuItem Header="Exit"/>
@@ -35,18 +35,16 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <ListView x:Name="listView" Background="#FFB5BFFF">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="False">
-                        <GridViewColumn Header="Index" Width="50" DisplayMemberBinding="{Binding Idx}" />
-                        <GridViewColumn Header="Time" Width="120" DisplayMemberBinding="{Binding Time}" />
-                        <GridViewColumn Header="UserID" Width="120" DisplayMemberBinding="{Binding UserId}" />
-                        <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding payload, Converter={StaticResource formatter}}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ScrollViewer>
+        <ListView x:Name="listView" Grid.Row="1" Background="#FFB5BFFF">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Header="Index" Width="auto" DisplayMemberBinding="{Binding Idx}" />
+                    <GridViewColumn Header="Time" Width="auto" DisplayMemberBinding="{Binding Time}" />
+                    <GridViewColumn Header="UserID" Width="auto" DisplayMemberBinding="{Binding UserId}" />
+                    <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding payLoad, Converter={StaticResource formatter}}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
         <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="2" IsTabStop="False" />
         <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Canvas Background="#FFBFFF89"/>
