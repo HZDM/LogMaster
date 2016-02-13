@@ -41,10 +41,19 @@ namespace logviewer
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var ofd = new Microsoft.Win32.OpenFileDialog() { Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif" };
+            var ofd = new Microsoft.Win32.OpenFileDialog() { Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All Files (*.*)|*.*" };
             var result = ofd.ShowDialog();
             if (result == false) return;
 
+        }
+
+        private void GridViewColumnHeader_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width <= 60)
+            {
+                e.Handled = true;
+                ((GridViewColumnHeader)sender).Column.Width = 60;
+            }
         }
     }
 }

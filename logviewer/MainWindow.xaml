@@ -38,8 +38,10 @@
         <ListView x:Name="listView" Grid.Row="1" Background="#FFB5BFFF">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
-                    <GridViewColumn Header="Index" Width="auto" DisplayMemberBinding="{Binding Idx}" />
-                    <GridViewColumn Header="Time" Width="auto" DisplayMemberBinding="{Binding Time}" />
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Idx}">
+                        <GridViewColumnHeader Content="Index" SizeChanged="GridViewColumnHeader_SizeChanged"/>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Time" Width="auto" DisplayMemberBinding="{Binding Time, StringFormat='dd/MM/yyyy HH:mm:ss'}" />
                     <GridViewColumn Header="UserID" Width="auto" DisplayMemberBinding="{Binding UserId}" />
                     <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding payLoad, Converter={StaticResource formatter}}" />
                 </GridView>
