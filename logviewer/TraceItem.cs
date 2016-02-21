@@ -12,9 +12,14 @@ namespace logviewer
 
         public DateTime Time { get; set; }
 
+
         public uint UserId { get; set; }
 
         public byte[] payLoad { get; set; }
 
+        public override string ToString()
+        {
+            return String.Format("{0,8:D}  {1:dd/MM/yyyy HH:mm:ss}  {2,8:X}  ", this.Idx, this.Time, this.UserId);
+        }
     }
 }

@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace logviewer
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -29,7 +30,9 @@ namespace logviewer
             {
                 Items.Add(new TraceItem() { Idx = i, Time = DateTime.Now, UserId = 0x100+i, payLoad = new byte[] { 0x1, 0x2, 0x3 } });
             }
-            listView.ItemsSource = Items;
+            //listView.ItemsSource = Items;
+            listBox.ItemsSource = Items;
+
         }
 
         private void scroll_PreviewMouseWheel(object sender, MouseWheelEventArgs e)

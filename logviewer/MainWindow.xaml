@@ -1,14 +1,18 @@
-﻿<Window x:Class="logviewer.MainWindow"
+﻿<Controls:MetroWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:logviewer"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="logviewer.MainWindow"
         mc:Ignorable="d"
         Title="LogMaster" Height="600" Width="800" MinHeight="600" MinWidth="800"
+        WindowStartupLocation="CenterOwner"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" FontSize="16">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" FontSize="16"
+        >
     <Window.Resources>
         <local:ByteArrayConverter x:Key="formatter"/>
     </Window.Resources>
@@ -35,7 +39,7 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <ListView x:Name="listView" Grid.Row="1" Background="#FFB5BFFF">
+        <!--<ListView x:Name="listView" Grid.Row="1" Background="#FFB5BFFF">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Idx}">
@@ -46,10 +50,24 @@
                     <GridViewColumn Header="Payload" Width="auto" DisplayMemberBinding="{Binding payLoad, Converter={StaticResource formatter}}" />
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>-->
+        <ListBox x:Name="listBox" Grid.Row="1" Background="#FFB5BFFF">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Expander>
+                            <Expander.Header>
+                                <Label Content="{Binding}" />
+                            </Expander.Header>
+                            <Label Content="{Binding payLoad, Converter={StaticResource formatter}}"/>
+                        </Expander>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="2" IsTabStop="False" />
         <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Canvas Background="#FFBFFF89"/>
         </ScrollViewer>
     </Grid>
-</Window>
+</Controls:MetroWindow>
